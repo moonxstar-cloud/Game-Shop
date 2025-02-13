@@ -20,7 +20,7 @@ export function useAuth() {
   const loginMutation = useMutation({
     mutationFn: async (credentials) => {
       dispatch(loginStart());
-      const response = await api.post('/auth/login', credentials);
+      const response = await api.post(`${process.env.REACT_APP_BACKEND_URL}/auth/login`, credentials);
       return response.data;
     },
     onSuccess: (data) => {
@@ -41,7 +41,7 @@ export function useAuth() {
 
   const registerMutation = useMutation({
     mutationFn: async (userData) => {
-      const response = await api.post('/auth/register', userData);
+      const response = await api.post(`${process.env.REACT_APP_BACKEND_URL}/auth/register`, userData);
       return response.data;
     },
     onSuccess: () => {

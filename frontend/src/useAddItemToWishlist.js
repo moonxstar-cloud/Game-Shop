@@ -13,7 +13,7 @@ const useAddItemToWishlist = () => {
         gameImage: game.background_image
       };
 
-      const response = await api.post(`/api/wishlist/add`, wishlistItem);
+      const response = await api.post(`${process.env.REACT_APP_BACKEND_URL}/api/wishlist/add`, wishlistItem);
       return response.data;
     },
     onSuccess: () => {
