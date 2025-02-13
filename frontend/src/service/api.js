@@ -4,7 +4,7 @@ import API_BASE_URL from '../api';
 
 const createApiInstance = () => {
   const api = axios.create({
-    baseURL:  process.env.REACT_APP_BACKEND_URL,
+    baseURL:  API_BASE_URL,
   });
 
   // Add a request interceptor to add the token

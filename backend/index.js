@@ -9,7 +9,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: 'https://game-shop-frontend-ten.vercel.app', // Your frontend URL
+  origin: ['https://game-shop-frontend-ten.vercel.app', 'https://game-shop-frontend-n3aun1u70-sunrisingly47-gmailcoms-projects.vercel.app'],
   credentials: true
 }));
 app.use(express.json());
