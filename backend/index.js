@@ -9,8 +9,10 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: 
-    'https://game-shop-server.vercel.app', // Allow your frontend on Vercel
+ origin: [
+    'https://game-shop-server.vercel.app',
+    'https://game-shop-rho-khaki.vercel.app'
+  ]
    credentials: true,
    // Your frontend URL
   
