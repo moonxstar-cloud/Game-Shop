@@ -6,7 +6,7 @@ const createApiInstance = () => {
 
   const api = axios.create({
     baseURL: "https://game-shop-mern.vercel.app",
-    // baseURL: process.env.REACT_APP_BACKEND_URL,
+    
   });
 
   // Add a request interceptor to add the token
