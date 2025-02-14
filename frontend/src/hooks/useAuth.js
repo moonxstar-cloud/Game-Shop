@@ -12,6 +12,7 @@ const api = axios.create({
     'Authorization': `Bearer ${token}`,
   }
 });
+console.log('axios baseURL:', api.defaults.baseURL);
 
 export function useAuth() {
   const dispatch = useDispatch();
