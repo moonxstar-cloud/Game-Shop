@@ -8,14 +8,14 @@ const wishlistRoutes = require('./routes/wishlist');
 const app = express();
 
 // Middleware
-app.options('*', cors({
-  origin: [
-    'https://game-shop-server.vercel.app',
-    'https://game-shop-rho-khaki.vercel.app'
-  ],
+const corsOptions = {
+  origin: 'https://game-shop-rho-khaki.vercel.app', // Your client's origin
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true, // Only needed if you're dealing with cookies or similar
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 
