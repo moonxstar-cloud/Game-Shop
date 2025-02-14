@@ -9,10 +9,9 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: [
-    'http://localhost:5173', // Allow your local frontend during development
+  origin: 
     'https://game-shop-frontend-ten.vercel.app', // Allow your frontend on Vercel
-  ], // Your frontend URL
+   // Your frontend URL
   
 }));
 app.use(express.json());
