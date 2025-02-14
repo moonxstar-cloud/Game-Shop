@@ -10,7 +10,7 @@ const app = express();
 // Middleware
 app.use(cors({
   origin: 
-    'https://game-shop-frontend-ten.vercel.app', // Allow your frontend on Vercel
+    'game-shop-rho-khaki.vercel.app', // Allow your frontend on Vercel
    // Your frontend URL
   
 }));
