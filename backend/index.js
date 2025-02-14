@@ -11,6 +11,7 @@ const app = express();
 app.use(cors({
   origin: 
     'https://game-shop-server.vercel.app', // Allow your frontend on Vercel
+   credentials: true,
    // Your frontend URL
   
 }));
