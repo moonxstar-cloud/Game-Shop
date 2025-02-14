@@ -7,12 +7,11 @@ const wishlistRoutes = require('./routes/wishlist');
 
 const app = express();
 
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://game-shop-rho-khaki.vercel.app'); // Replace with your frontend's origin
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  next();
-});
+const cors = require('cors');
+app.use(cors({
+  origin: 'https://game-shop-rho-khaki.vercel.app',
+  credentials: true
+}));
 
 app.use(express.json());
 
