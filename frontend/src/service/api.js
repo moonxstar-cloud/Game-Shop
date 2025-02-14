@@ -3,9 +3,10 @@ import axios from 'axios';
 
 
 const createApiInstance = () => {
-  console.log('REACT_APP_BACKEND_URL:', process.env.REACT_APP_BACKEND_URL);
+
   const api = axios.create({
-    baseURL: process.env.REACT_APP_BACKEND_URL,
+    baseURL: "https://game-shop-mern.vercel.app",
+    // baseURL: process.env.REACT_APP_BACKEND_URL,
   });
 
   // Add a request interceptor to add the token
