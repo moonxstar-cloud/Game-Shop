@@ -5,7 +5,7 @@ import axios from 'axios';
 const createApiInstance = () => {
 
   const api = axios.create({
-    baseURL:["https://game-shop-mern.vercel.app","http://localhost:5173"] ,
+    baseURL:"https://game-shop-mern.vercel.app", ,
     
   });
 
