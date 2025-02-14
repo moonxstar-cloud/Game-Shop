@@ -7,15 +7,12 @@ const wishlistRoutes = require('./routes/wishlist');
 
 const app = express();
 
-// Middleware
-const corsOptions = {
-  origin: 'https://game-shop-rho-khaki.vercel.app', // Your client's origin
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true, // Only needed if you're dealing with cookies or similar
-};
-
-app.use(cors(corsOptions));
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://game-shop-rho-khaki.vercel.app'); // Replace with your frontend's origin
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
 
 app.use(express.json());
 
