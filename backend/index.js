@@ -8,15 +8,7 @@ const wishlistRoutes = require('./routes/wishlist');
 const app = express();
 
 // Middleware
-app.use(cors({
- origin: [
-    'https://game-shop-server.vercel.app',
-    'https://game-shop-rho-khaki.vercel.app'
-  ]
-   credentials: true,
-   // Your frontend URL
-  
-}));
+app.use(cors());
 app.use(express.json());
 
 // Routes prefix
