@@ -5,7 +5,7 @@ const useWishlist = () => {
       queryKey: ['wishlist'],
       queryFn: async () => {
         try {
-          const response = await api.get(`${process.env.REACT_APP_BACKEND_URL}/api/wishlist`);
+          const response = await api.get(`/api/wishlist`);
           return response.data;
         } catch (error) {
           if (error.response?.status === 401) {

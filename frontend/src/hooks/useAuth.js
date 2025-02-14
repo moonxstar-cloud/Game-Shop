@@ -6,7 +6,7 @@ import axios from 'axios';
 const token = localStorage.getItem('token');
 
 const api = axios.create({
-  baseURL: 'https://game-shop-mern.vercel.app', // Make sure this matches your backend URL
+  baseURL: 'https://game-shop-mern.vercel.app/api', // Make sure this matches your backend URL
   headers: {
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${token}`,

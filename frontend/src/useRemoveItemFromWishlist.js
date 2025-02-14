@@ -7,7 +7,7 @@ const useRemoveItemFromWishlist = () => {
 
   const { mutate, isLoading, error } = useMutation({
     mutationFn: async (gameId) => {
-      const response = await api.delete(`${process.env.REACT_APP_BACKEND_URL}/api/wishlist/remove/${gameId}`);
+      const response = await api.delete(`/api/wishlist/remove/${gameId}`);
       return response.data;
     },
     onSuccess: () => {
