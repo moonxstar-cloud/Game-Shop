@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../slice/authSlice';
 
-function Header({ onMenuClick }) {
+function Header({ onMenuClick ,setSearchQuery}) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useSelector(state => state.auth);
@@ -44,6 +44,7 @@ function Header({ onMenuClick }) {
           type="search"  
           placeholder='Search' 
           className='pl-12 py-2 w-4/5 rounded-full bg-[#2B2B2B] text-white outline-none' 
+          onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
 

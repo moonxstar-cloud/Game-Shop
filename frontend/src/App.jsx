@@ -15,6 +15,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Provider } from "react-redux";
 import { store } from "./slice/store";
 import DesktopSidebar from "./Component/DesktopSidebar";
+import { useState } from "react";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -27,12 +28,14 @@ const queryClient = new QueryClient({
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
+  const [searchQuery, setSearchQuery] = useState(""); // State for search input
+
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <div className="flex flex-col h-screen">
-            <Header onMenuClick={() => setIsSidebarOpen(true)} />
+            <Header onMenuClick={() => setIsSidebarOpen(true)}  setSearchQuery={setSearchQuery}/>
             <div className="flex flex-1 overflow-hidden">
               <DesktopSidebar />
               <div className="flex-1 overflow-y-auto">
@@ -42,7 +45,7 @@ function App() {
                 />
                 <ToastContainer />
                 <Routes>
-                  <Route path="/" element={<Home />} />
+                  <Route path="/" element={<Home  searchQuery={searchQuery}/>} />
                   <Route path="/login" element={<LoginPage />} />
                   <Route path="/register" element={<RegisterPage />} />
                   <Route path="/game/:gameId/similar" element={<SimilarGames />} />

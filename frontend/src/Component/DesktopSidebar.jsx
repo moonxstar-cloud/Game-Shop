@@ -10,7 +10,7 @@ function DesktopSidebar() {
         
           <span className="font-bold text-2xl">Home</span>
         </Link>
-        <Link to="" className="flex items-center space-x-2 text-white hover:text-[#666565]">
+        <Link to="/" className="flex items-center space-x-2 text-white hover:text-[#666565]">
          
           <span className="font-bold text-2xl">Reviews</span>
         </Link>
@@ -18,7 +18,7 @@ function DesktopSidebar() {
           
           <span className="font-bold text-2xl">New Releases</span>
         </Link>
-        <Link to="" className="flex items-center space-x-2 text-white hover:text-[#666565]">
+        <Link to="/" className="flex items-center space-x-2 text-white hover:text-[#666565]">
         
           <span className="font-bold text-2xl"> All Games</span>
         </Link>

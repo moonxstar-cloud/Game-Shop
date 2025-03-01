@@ -8,6 +8,8 @@ import { withAuth } from '../hoc/withAuth.jsx';
 import useAddItemToWishlist from '../useAddItemToWishlist';
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+
 function GameCard({ game , onAuthRequired}) {
   const [viewMore, setViewMore] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
