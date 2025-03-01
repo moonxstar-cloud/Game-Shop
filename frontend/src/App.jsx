@@ -30,22 +30,34 @@ function App() {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
   const [searchQuery, setSearchQuery] = useState(""); // State for search input
 
+  // Function to clear the search query
+  const clearSearchQuery = () => {
+    setSearchQuery(""); // Reset the search query to an empty string
+  };
+
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <div className="flex flex-col h-screen">
-            <Header onMenuClick={() => setIsSidebarOpen(true)}  setSearchQuery={setSearchQuery}/>
+            <Header
+              onMenuClick={() => setIsSidebarOpen(true)}
+              setSearchQuery={setSearchQuery}
+              searchQuery={searchQuery} // Pass searchQuery to Header
+            />
             <div className="flex flex-1 overflow-hidden">
-              <DesktopSidebar />
+              {/* Pass clearSearchQuery to DesktopSidebar */}
+              <DesktopSidebar clearSearchQuery={clearSearchQuery} />
               <div className="flex-1 overflow-y-auto">
+                {/* Pass clearSearchQuery to MobileSidebar */}
                 <MobileSidebar
                   isOpen={isSidebarOpen}
                   onClose={() => setIsSidebarOpen(false)}
+                  clearSearchQuery={clearSearchQuery}
                 />
                 <ToastContainer />
                 <Routes>
-                  <Route path="/" element={<Home  searchQuery={searchQuery}/>} />
+                  <Route path="/" element={<Home searchQuery={searchQuery} />} />
                   <Route path="/login" element={<LoginPage />} />
                   <Route path="/register" element={<RegisterPage />} />
                   <Route path="/game/:gameId/similar" element={<SimilarGames />} />
