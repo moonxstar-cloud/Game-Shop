@@ -1,13 +1,18 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Menu, Search, LogOut } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { logout } from '../slice/authSlice';
-
-function Header({ onMenuClick, setSearchQuery, searchQuery }) {
+import React, { useState, useRef, useEffect } from "react";
+import { Menu, Search, LogOut } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../slice/authSlice";
+import { FiLogIn } from "react-icons/fi";
+function Header({
+  onMenuClick,
+  setSearchQuery,
+  searchQuery,
+  clearSearchQuery,
+}) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { user, isAuthenticated } = useSelector(state => state.auth);
+  const { user, isAuthenticated } = useSelector((state) => state.auth);
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
 
@@ -18,50 +23,69 @@ function Header({ onMenuClick, setSearchQuery, searchQuery }) {
         setShowDropdown(false);
       }
     }
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const handleLogout = () => {
     dispatch(logout());
-    localStorage.removeItem('token');
-    navigate('/');
+    localStorage.removeItem("token");
+    navigate("/");
+  };
+  const handleNavigation = (path) => {
+    clearSearchQuery(); // Clear the search query
+    navigate(path); // Navigate to the desired page
   };
 
   return (
-    <header className='flex justify-between items-center p-4'>
+    <header className="flex justify-between items-center p-4 ">
       <div className="flex items-center">
         <h1
           className="text-white font-bold text-xl m-5 cursor-pointer"
-          onClick={() => navigate('/')}
+          onClick={() => navigate("/")}
         >
           RAWG
         </h1>
       </div>
 
-      <div className='md:flex-1 mx-4 relative'>
+      <div className="md:flex-1 mx-4 relative  ">
         <Search
           color="#bebebe"
-          className='absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-600'
+          className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-600"
           size={24}
         />
         <input
           type="search"
-          placeholder='Search'
-          className='pl-12 py-2 w-4/5 rounded-full bg-[#2B2B2B] text-white outline-none'
+          placeholder="Search"
+          className="pl-12 py-2 w-4/5 rounded-full bg-[#2B2B2B] text-white outline-none"
           value={searchQuery} // Controlled input
           onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
-
-      <div className='flex gap-3 items-center'>
+      <div className="flex items-center  ">
+        <h1
+          className="text-white font-bold text-xl md:text-lg md:m-3 m-5 cursor-pointer hidden md:block"
+          onClick={() => handleNavigation("/")}
+        >
+          All Games
+        </h1>
+        <h1
+          className="text-white font-bold text-xl m-5 cursor-pointer hidden md:block"
+          onClick={() => handleNavigation("/wishlist")}
+        >
+          WishList
+        </h1>
+      </div>
+      <div className="flex gap-3 items-center">
         {isAuthenticated ? (
           <div className="relative" ref={dropdownRef}>
             <div
-              className='w-8 h-8 bg-purple-600 rounded-full flex justify-center items-center cursor-pointer'
+              className="w-8 h-8 bg-purple-600 rounded-full flex justify-center items-center cursor-pointer"
               onClick={() => setShowDropdown(!showDropdown)}
             >
-              <span className='text-white'>{user?.name?.[0].toUpperCase()}</span>
+              <span className="text-white">
+                {user?.name?.[0].toUpperCase()}
+              </span>
             </div>
 
             {showDropdown && (
@@ -71,7 +95,7 @@ function Header({ onMenuClick, setSearchQuery, searchQuery }) {
                     {user?.email}
                   </div>
                   <div
-                    onClick={() => navigate('/wishlist')}
+                    onClick={() => navigate("/wishlist")}
                     className="px-4 py-2 text-sm text-white hover:bg-purple-600 cursor-pointer"
                   >
                     My Wishlist
@@ -89,14 +113,18 @@ function Header({ onMenuClick, setSearchQuery, searchQuery }) {
           </div>
         ) : (
           <button
-            className="text-white bg-purple-600 px-4 py-2 rounded-lg hover:bg-purple-700"
-            onClick={() => navigate('/login')}
+            className="text-white bg-purple-600 px-3 py-2 m-2 rounded-lg hover:bg-purple-700 sm:px-3 sm:py-2 md:px-3 md:py-2"
+            onClick={() => navigate("/login")}
           >
-            Sign In
+            <FiLogIn className="block sm:hidden" />
+            <span className="hidden sm:inline-block">Sign in</span>
           </button>
         )}
 
-        <button className='text-white md:hidden relative z-50' onClick={onMenuClick}>
+        <button
+          className="text-white md:hidden relative z-50"
+          onClick={onMenuClick}
+        >
           <Menu size={24} />
         </button>
       </div>

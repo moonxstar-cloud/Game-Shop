@@ -29,7 +29,7 @@ const queryClient = new QueryClient({
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
   const [searchQuery, setSearchQuery] = useState(""); // State for search input
-
+  
   // Function to clear the search query
   const clearSearchQuery = () => {
     setSearchQuery(""); // Reset the search query to an empty string
@@ -41,13 +41,14 @@ function App() {
         <BrowserRouter>
           <div className="flex flex-col h-screen">
             <Header
+            clearSearchQuery={clearSearchQuery}
               onMenuClick={() => setIsSidebarOpen(true)}
               setSearchQuery={setSearchQuery}
               searchQuery={searchQuery} // Pass searchQuery to Header
             />
             <div className="flex flex-1 overflow-hidden">
               {/* Pass clearSearchQuery to DesktopSidebar */}
-              <DesktopSidebar clearSearchQuery={clearSearchQuery} />
+             
               <div className="flex-1 overflow-y-auto">
                 {/* Pass clearSearchQuery to MobileSidebar */}
                 <MobileSidebar
